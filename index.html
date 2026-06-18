@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Tony Argote Solano - vCard & Landing Page</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons para Redes y UI -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              light: '#56C3E8',   // Celeste
+              dark: '#00829B',    // Turquesa
+              red: '#B41218',     // Rojo Corazón
+              darker: '#0a3d47',
+              bgLight: '#f4f9fb'
+            }
+          },
+          borderRadius: {
+            '4xl': '2rem',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .gradient-header {
+      background: linear-gradient(135deg, #00829B 0%, #56C3E8 100%);
+    }
+    .custom-shadow {
+      box-shadow: 0 10px 30px -10px rgba(0, 130, 155, 0.15);
+    }
+    .custom-shadow-hover:hover {
+      box-shadow: 0 20px 40px -15px rgba(0, 130, 155, 0.25);
+      transform: translateY(-2px);
+    }
+    .brand-btn-gradient {
+      background: linear-gradient(90deg, #00829B 0%, #56C3E8 100%);
+      transition: all 0.3s ease;
+    }
+    .brand-btn-gradient:hover {
+      background: linear-gradient(90deg, #0a3d47 0%, #00829B 100%);
+      transform: translateY(-1px);
+    }
+    /* Patrón decorativo Wayúu sutil en el fondo */
+    .wayuu-pattern {
+      background-color: #ffffff;
+      background-image: 
+        linear-gradient(30deg, #00829b 12%, transparent 12.5%, transparent 87%, #00829b 87.5%, #00829b),
+        linear-gradient(150deg, #00829b 12%, transparent 12.5%, transparent 87%, #00829b 87.5%, #00829b),
+        linear-gradient(30deg, #00829b 12%, transparent 12.5%, transparent 87%, #00829b 87.5%, #00829b),
+        linear-gradient(150deg, #00829b 12%, transparent 12.5%, transparent 87%, #00829b 87.5%, #00829b),
+        linear-gradient(60deg, #00829b 25%, transparent 25.5%, transparent 75%, #00829b 75.5%, #00829b),
+        linear-gradient(60deg, #00829b 25%, transparent 25.5%, transparent 75%, #00829b 75.5%, #00829b);
+      background-size: 40px 70px;
+      background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
+      opacity: 0.025;
+    }
+    /* Ocultar barra de desplazamiento */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-[#eef5f8] text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- NOTIFICACIÓN DE SISTEMA (Toast) -->
+  <div id="toastNotification" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 transform -translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-slate-950/95 backdrop-blur-md text-white px-6 py-3 rounded-full shadow-2xl flex items-center space-x-3 border border-brand-light/30">
+      <span id="toastIcon" class="text-brand-light"><i class="fa-solid fa-circle-check"></i></span>
+      <span id="toastMessage" class="text-sm font-semibold tracking-wide">¡Operación realizada!</span>
+    </div>
+  </div>
+
+  <!-- CONTENEDOR MÓVIL PRINCIPAL -->
+  <main class="max-w-md mx-auto w-full bg-white min-h-screen flex flex-col shadow-2xl relative overflow-hidden pb-24">
+    
+    <!-- PATRÓN WAYUU DE FONDO -->
+    <div class="absolute inset-0 wayuu-pattern pointer-events-none"></div>
+
+    <!-- BOTÓN GESTOR DE CONTENIDO (ADMIN) - OCULTO POR DEFECTO PARA SEGURIDAD -->
+    <button id="adminBtn" onclick="openAdminSecurity()" class="hidden absolute top-4 right-4 z-40 bg-white/95 backdrop-blur-md text-brand-dark hover:text-brand-red p-2.5 rounded-full shadow-lg border border-slate-100 transition-all duration-300 flex items-center justify-center hover:scale-110" title="Administrar Contenido">
+      <i class="fa-solid fa-sliders text-lg"></i>
+    </button>
+
+    <!-- HEADER / HERO -->
+    <div class="gradient-header pt-12 pb-20 px-6 text-center text-white rounded-b-[3rem] relative custom-shadow">
+      <div class="absolute bottom-0 left-0 right-0 h-10 bg-white" style="clip-path: ellipse(60% 100% at 50% 100%);"></div>
+      
+      <!-- LOGO VECTORIAL CON INTERACCIÓN DE TOQUES SECRETOS -->
+      <div onclick="handleLogoTap()" class="w-24 h-24 mx-auto mb-4 bg-white rounded-3xl p-3 flex items-center justify-center shadow-xl relative transform active:scale-95 hover:scale-105 transition duration-300 cursor-pointer" title="Dr. Tony Argote">
+        <svg viewBox="0 0 200 200" class="w-full h-full">
+          <defs>
+            <clipPath id="crossClip">
+              <path d="M 70 20 A 15 15 0 0 1 85 5 L 115 5 A 15 15 0 0 1 130 20 L 130 70 L 180 70 A 15 15 0 0 1 195 85 L 195 115 A 15 15 0 0 1 180 130 L 130 130 L 130 180 A 15 15 0 0 1 115 195 L 85 195 A 15 15 0 0 1 70 180 L 70 130 L 20 130 A 15 15 0 0 1 5 115 L 5 85 A 15 15 0 0 1 20 70 L 70 70 Z" />
+            </clipPath>
+          </defs>
+          <g clip-path="url(#crossClip)">
+            <rect x="0" y="0" width="200" height="200" fill="#56C3E8" />
+            <path d="M 80 200 C 110 160, 130 140, 110 100 C 90 60, 115 40, 125 0 L 200 0 L 200 200 Z" fill="#00829B" />
+            <path d="M 80 200 C 110 160, 130 140, 110 100 C 90 60, 115 40, 125 0" fill="none" stroke="white" stroke-width="8" stroke-linecap="round" />
+          </g>
+          <g transform="translate(100, 38) scale(0.95)">
+            <path d="M 0 -22 C -15 -42, -35 -25, -35 -3 C -35 15, -15 28, 0 45 C 15 28, 35 15, 35 -3 C 35 -25, 15 -42, 0 -22 Z" fill="white" />
+            <path d="M 0 -20 C -12 -37, -29 -22, -29 -3 C -29 13, -12 25, 0 40 C 12 25, 29 13, 29 -3 C 29 -22, 12 -37, 0 -20 Z" fill="#B41218" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Información del Perfil -->
+      <h1 id="profName" class="text-2xl font-extrabold tracking-tight mb-1 text-slate-50">Dr. Tony Argote Solano</h1>
+      <p id="profTitle" class="text-sky-100 text-sm font-semibold mb-4 tracking-wide">Médico & Líder de Impacto Social</p>
+      
+      <!-- LÍNEA DE PERFIL ACTUALIZADA -->
+      <p id="profBio" class="text-xs text-sky-50 max-w-xs mx-auto leading-relaxed opacity-95">
+        Uniendo la medicina, la fe y la tradición para llevar bienestar integral a las comunidades del caribe colombiano.
+      </p>
+
+      <!-- Botonera de Contacto Rápido -->
+      <div class="mt-6 flex justify-center space-x-3">
+        <button onclick="downloadVCard()" class="bg-white/10 hover:bg-white/25 backdrop-blur-md text-white text-xs font-bold px-4 py-2.5 rounded-full border border-white/20 transition-all duration-300 flex items-center space-x-2 shadow-sm">
+          <i class="fa-solid fa-address-card"></i>
+          <span>Guardar Contacto</span>
+        </button>
+        <button onclick="shareProfile()" class="bg-brand-red hover:bg-red-700 text-white text-xs font-bold px-4 py-2.5 rounded-full transition-all duration-300 flex items-center space-x-2 shadow-lg">
+          <i class="fa-solid fa-share-nodes"></i>
+          <span>Compartir Perfil</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- SECCIÓN INTERACTIVA DE SELECTOR DE SERVICIOS -->
+    <div class="px-5 -mt-10 z-10 relative">
+      <div class="bg-white rounded-[2rem] p-5 shadow-2xl border border-slate-100">
+        <h2 class="text-slate-400 text-[10px] font-bold tracking-wider uppercase text-center mb-4">¿En cuál de mis servicios estás interesado hoy?</h2>
+        
+        <!-- Grid de Botones Directores -->
+        <div class="grid grid-cols-2 gap-3 mb-5">
+          
+          <!-- Fundación Social -->
+          <button onclick="selectService('fundacion')" id="btn-fundacion" class="service-tab-btn flex flex-col items-center justify-center p-4 rounded-2xl border-2 border-slate-100 hover:border-brand-light bg-slate-50 transition-all duration-300 text-center group">
+            <div class="w-12 h-12 rounded-full bg-sky-100 text-brand-light flex items-center justify-center mb-2 group-hover:scale-110 transition duration-300">
+              <i class="fa-solid fa-hand-holding-heart text-xl"></i>
+            </div>
+            <span class="text-xs font-extrabold text-slate-700 group-hover:text-brand-dark leading-tight">Fundación Social</span>
+          </button>
+
+          <!-- Health Today Care -->
+          <button onclick="selectService('health')" id="btn-health" class="service-tab-btn flex flex-col items-center justify-center p-4 rounded-2xl border-2 border-slate-100 hover:border-brand-dark bg-slate-50 transition-all duration-300 text-center group">
+            <div class="w-12 h-12 rounded-full bg-[#e6f2f5] text-brand-dark flex items-center justify-center mb-2 group-hover:scale-110 transition duration-300">
+              <i class="fa-solid fa-user-doctor text-xl"></i>
+            </div>
+            <span class="text-xs font-extrabold text-slate-700 group-hover:text-brand-dark leading-tight">Health Today Care</span>
+          </button>
+
+          <!-- Tienda O' unaa -->
+          <button onclick="selectService('tienda')" id="btn-tienda" class="service-tab-btn flex flex-col items-center justify-center p-4 rounded-2xl border-2 border-slate-100 hover:border-brand-red bg-slate-50 transition-all duration-300 text-center group">
+            <div class="w-12 h-12 rounded-full bg-red-50 text-brand-red flex items-center justify-center mb-2 group-hover:scale-110 transition duration-300">
+              <i class="fa-solid fa-bag-shopping text-xl"></i>
+            </div>
+            <span class="text-xs font-extrabold text-slate-700 group-hover:text-brand-red leading-tight">Tienda O' unaa</span>
+          </button>
+
+          <!-- Ministerio Mt935 -->
+          <button onclick="selectService('ministerio')" id="btn-ministerio" class="service-tab-btn flex flex-col items-center justify-center p-4 rounded-2xl border-2 border-slate-100 hover:border-amber-500 bg-slate-50 transition-all duration-300 text-center group">
+            <div class="w-12 h-12 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center mb-2 group-hover:scale-110 transition duration-300">
+              <i class="fa-solid fa-church text-xl"></i>
+            </div>
+            <span class="text-xs font-extrabold text-slate-700 group-hover:text-amber-700 leading-tight">Ministerio Mt935</span>
+          </button>
+
+        </div>
+
+        <!-- CONTENIDOS DETALLADOS DINÁMICOS -->
+        <div id="serviceDetailsBox" class="bg-[#fcfdfe] rounded-2xl p-5 border border-slate-100 min-h-[240px] flex flex-col justify-between">
+          
+          <!-- Estado por Defecto -->
+          <div id="content-default" class="text-center py-10 flex flex-col items-center justify-center flex-grow">
+            <div class="text-brand-dark/20 text-5xl mb-3 animate-pulse">
+              <i class="fa-solid fa-hand-pointer"></i>
+            </div>
+            <p class="text-slate-500 text-xs font-semibold px-4 leading-relaxed">Toca una de las opciones de arriba para ver detalles, catálogos, noticias y opciones de apoyo de la Fundación.</p>
+          </div>
+
+          <!-- Fundación Social Content -->
+          <div id="content-fundacion" class="hidden space-y-5">
+            <div class="flex items-center space-x-2 text-brand-dark">
+              <i class="fa-solid fa-hand-holding-heart text-xl"></i>
+              <h3 class="font-extrabold text-base">Salud Hoy al Alcance de Todos</h3>
+            </div>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Trabajamos incansablemente por llevar salud y dignidad a los territorios del Caribe colombiano. A través de donaciones y voluntarios, impactamos vidas en Barranquilla y la Alta Guajira.
+            </p>
+
+            <!-- PROGRAMAS DE LA FUNDACIÓN -->
+            <div class="pt-3 border-t border-slate-100">
+              <h4 class="text-xs font-extrabold text-slate-700 mb-3 flex items-center space-x-1.5">
+                <span class="text-brand-light"><i class="fa-solid fa-shield-halved"></i></span>
+                <span>Programas Activos de Impacto:</span>
+              </h4>
+              <div id="programsContainer" class="space-y-3">
+                <!-- Inyectado dinámicamente -->
+              </div>
+            </div>
+
+            <!-- APARTADO DE DONACIÓN RÁPIDA -->
+            <div class="bg-sky-50/75 border border-sky-100 rounded-2xl p-4 space-y-3 shadow-inner">
+              <div class="flex items-center space-x-2">
+                <span class="text-brand-red text-sm animate-pulse"><i class="fa-solid fa-heart-circle-bolt"></i></span>
+                <h4 class="text-xs font-extrabold text-slate-800">¿Deseas apoyar esta labor?</h4>
+              </div>
+              <p class="text-[10px] text-slate-600 leading-relaxed">
+                Tu aporte nos permite adquirir medicamentos, insumos de higiene femenina y transporte de personal médico. Puedes donar directamente aquí:
+              </p>
+              
+              <!-- Detalles de Cuenta Bancaria -->
+              <div class="bg-white rounded-xl p-3 border border-sky-200/50 flex justify-between items-center shadow-sm">
+                <div class="space-y-0.5">
+                  <span id="bankNameDisplay" class="block text-[10px] font-extrabold text-brand-dark uppercase tracking-wider">Banco de Bogotá (Ahorros)</span>
+                  <span id="bankAccountDisplay" class="block text-xs font-bold text-slate-700 tracking-wider">N° 123-45678-9</span>
+                  <span id="bankOwnerDisplay" class="block text-[9px] text-slate-400 font-semibold">Fundación Salud Hoy NIT. 901...</span>
+                </div>
+                <button onclick="copyBankAccount()" class="bg-brand-dark hover:bg-brand-darker text-white p-2.5 rounded-lg transition-colors flex items-center justify-center shadow-sm" title="Copiar Número de Cuenta">
+                  <i class="fa-regular fa-copy text-sm"></i>
+                </button>
+              </div>
+
+              <!-- Botón Directo a Link de Recaudo -->
+              <a href="#" id="link-direct-donation" target="_blank" class="w-full bg-brand-red hover:bg-red-700 text-white text-[11px] font-extrabold py-2.5 px-3 rounded-xl flex items-center justify-center space-x-2 transition shadow-md hover:shadow-lg">
+                <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                <span>Donar por Link de Pago (Wompi/Nequi)</span>
+              </a>
+            </div>
+
+            <!-- SECCIÓN DE NOTICIAS -->
+            <div class="pt-3 border-t border-slate-100">
+              <h4 class="text-xs font-extrabold text-slate-700 mb-3 flex items-center space-x-1.5">
+                <span class="text-brand-dark"><i class="fa-solid fa-newspaper"></i></span>
+                <span>Noticias & Avances de Misiones:</span>
+              </h4>
+              <div id="newsContainer" class="space-y-3">
+                <!-- Inyectado dinámicamente -->
+              </div>
+            </div>
+
+            <div class="pt-3 flex flex-col space-y-2">
+              <a href="#" id="link-wa-fundacion" target="_blank" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 transition shadow-md">
+                <i class="fa-brands fa-whatsapp text-base"></i>
+                <span>Postularse como Voluntario</span>
+              </a>
+              <button onclick="openForm('Fundación Social')" class="w-full bg-slate-800 hover:bg-slate-950 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 transition shadow-md">
+                <i class="fa-regular fa-envelope"></i>
+                <span>Proponer Alianza Corporativa</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Health Today Care Content -->
+          <div id="content-health" class="hidden space-y-4">
+            <div class="flex items-center space-x-2 text-brand-dark">
+              <i class="fa-solid fa-user-doctor text-xl"></i>
+              <h3 class="font-bold text-base">Health Today Care</h3>
+            </div>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Atención médica profesional, consultas a domicilio altamente confiables y tratamientos avanzados de sueroterapia personalizados para revitalizar tu energía y fortalecer tu sistema inmunológico.
+            </p>
+
+            <!-- CATÁLOGO DE SUEROTERAPIA CON FILTRO -->
+            <div class="pt-2">
+              <h4 class="text-xs font-extrabold text-slate-700 mb-2 flex items-center space-x-1.5">
+                <span class="text-brand-dark">🧪</span>
+                <span>Sueroterapia Personalizada:</span>
+              </h4>
+              <!-- Chips de Filtro -->
+              <div class="flex space-x-2 overflow-x-auto pb-2 mb-3 no-scrollbar">
+                <button onclick="filterSueros('Todos')" id="filter-all" class="suero-filter-chip bg-brand-dark text-white text-[9px] font-extrabold uppercase tracking-wider px-3 py-1.5 rounded-full transition-all">Todos</button>
+                <button onclick="filterSueros('Premium')" id="filter-premium" class="suero-filter-chip bg-slate-100 text-slate-600 text-[9px] font-extrabold uppercase tracking-wider px-3 py-1.5 rounded-full transition-all">Premium</button>
+                <button onclick="filterSueros('Recomendado')" id="filter-rec" class="suero-filter-chip bg-slate-100 text-slate-600 text-[9px] font-extrabold uppercase tracking-wider px-3 py-1.5 rounded-full transition-all">Recomendado</button>
+                <button onclick="filterSueros('Detox')" id="filter-detox" class="suero-filter-chip bg-slate-100 text-slate-600 text-[9px] font-extrabold uppercase tracking-wider px-3 py-1.5 rounded-full transition-all">Detox</button>
+              </div>
+
+              <div id="sueroterapiaCatalogContainer" class="space-y-3">
+                <!-- Inyectado dinámicamente -->
+              </div>
+            </div>
+
+            <!-- CONSEJOS DE SALUD -->
+            <div class="pt-4 border-t border-slate-100">
+              <h4 class="text-xs font-extrabold text-slate-700 mb-2.5 flex items-center space-x-1">
+                <span class="text-brand-dark">💡</span>
+                <span>Consejos de Salud del Dr. Tony:</span>
+              </h4>
+              <div id="tipsCarouselContainer" class="flex space-x-3 overflow-x-auto pb-4 snap-x snap-mandatory no-scrollbar">
+                <!-- Inyectado dinámicamente -->
+              </div>
+            </div>
+
+            <div class="pt-2 flex flex-col space-y-2">
+              <a href="#" id="link-wa-health" target="_blank" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 transition shadow-md">
+                <i class="fa-brands fa-whatsapp text-base"></i>
+                <span>Agendar Consulta General</span>
+              </a>
+              <button onclick="openForm('Health Today Care')" class="w-full bg-slate-800 hover:bg-slate-950 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 transition">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Solicitar Consulta Particular</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Tienda O' unaa Content -->
+          <div id="content-tienda" class="hidden space-y-4">
+            <div class="flex items-center space-x-2 text-brand-red">
+              <i class="fa-solid fa-bag-shopping text-xl"></i>
+              <h3 class="font-extrabold text-base">Tienda O' unaa</h3>
+            </div>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Moda, arte y tradición ancestral Wayúu de la más alta calidad. Cada pieza está tejida a mano con amor por artesanas de la Guajira, llevando un sustento digno a sus familias.
+            </p>
+            
+            <!-- CATÁLOGO DE PRODUCTOS -->
+            <div>
+              <h4 class="text-xs font-extrabold text-slate-700 mb-3 flex items-center space-x-1.5">
+                <span class="text-brand-red">🎒</span>
+                <span>Piezas Destacadas O' unaa:</span>
+              </h4>
+              <div id="wayuuCatalogContainer" class="grid grid-cols-2 gap-3 pb-2">
+                <!-- Inyectado dinámicamente -->
+              </div>
+            </div>
+
+            <div class="pt-3 flex flex-col space-y-2">
+              <a href="#" id="link-wa-tienda" target="_blank" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 transition shadow-md">
+                <i class="fa-brands fa-whatsapp text-base"></i>
+                <span>Ver Más Diseños Exclusivos</span>
+              </a>
+              <a href="#" id="link-ig-tienda" target="_blank" class="w-full bg-gradient-to-r from-purple-600 via-pink-600 to-yellow-500 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 transition shadow-md">
+                <i class="fa-brands fa-instagram text-base"></i>
+                <span>Visitar @tienda_ounaa en Instagram</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Ministerio Mt935 Content -->
+          <div id="content-ministerio" class="hidden space-y-4">
+            <div class="flex items-center space-x-2 text-amber-600">
+              <i class="fa-solid fa-church text-xl"></i>
+              <h3 class="font-extrabold text-base">Ministerio Mt935</h3>
+            </div>
+            <div class="bg-amber-50 rounded-xl p-4 border border-amber-100 text-[11px] text-amber-800 italic relative overflow-hidden">
+              <span class="absolute right-2 bottom-0 text-5xl text-amber-200/40 font-serif">"</span>
+              "Y recorría Jesús todas las ciudades y aldeas... predicando el evangelio del reino, y sanando toda enfermedad y todo azote en el pueblo." <br>
+              <strong class="block mt-2 text-right text-amber-900 font-semibold">— Mateo 9:35</strong>
+            </div>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Un ministerio enfocado en la plantación de iglesias saludables y llevar bienestar integral que une la sanidad física y espiritual para impactar vidas en la región Caribe.
+            </p>
+            <div class="pt-2 flex flex-col space-y-2">
+              <a href="#" id="link-wa-ministerio" target="_blank" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 transition shadow-md">
+                <i class="fa-brands fa-whatsapp text-base"></i>
+                <span>Pedir Oración o Información</span>
+              </a>
+              <button onclick="openForm('Ministerio Mt935')" class="w-full bg-slate-800 hover:bg-slate-950 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 transition">
+                <i class="fa-solid fa-hands-praying"></i>
+                <span>Enviar Petición de Oración Privada</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL DE PIN DE SEGURIDAD (PASSWORD LOCK SCREEN) -->
+    <div id="pinModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+      <div class="bg-white max-w-xs w-full rounded-[2rem] p-6 text-center shadow-2xl border border-slate-100 relative">
+        <button onclick="closePinModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition"><i class="fa-solid fa-xmark"></i></button>
+        <div class="w-12 h-12 rounded-full bg-red-50 text-brand-red flex items-center justify-center mx-auto mb-3">
+          <i class="fa-solid fa-lock text-lg"></i>
+        </div>
+        <h3 class="text-slate-800 font-extrabold text-sm mb-1">Código de Acceso</h3>
+        <p class="text-slate-500 text-[10px] mb-5">Ingresa el PIN numérico de administración.</p>
+        
+        <!-- Círculos Visuales del PIN -->
+        <div class="flex justify-center space-x-4 mb-6">
+          <div id="pinDot-0" class="w-3.5 h-3.5 rounded-full border-2 border-slate-300 transition-all duration-200 bg-white"></div>
+          <div id="pinDot-1" class="w-3.5 h-3.5 rounded-full border-2 border-slate-300 transition-all duration-200 bg-white"></div>
+          <div id="pinDot-2" class="w-3.5 h-3.5 rounded-full border-2 border-slate-300 transition-all duration-200 bg-white"></div>
+          <div id="pinDot-3" class="w-3.5 h-3.5 rounded-full border-2 border-slate-300 transition-all duration-200 bg-white"></div>
+        </div>
+
+        <!-- Teclado Numérico Interno -->
+        <div class="grid grid-cols-3 gap-3 max-w-[210px] mx-auto">
+          <button onclick="pressPinKey('1')" class="w-12 h-12 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 font-extrabold text-sm flex items-center justify-center transition active:scale-90">1</button>
+          <button onclick="pressPinKey('2')" class="w-12 h-12 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 font-extrabold text-sm flex items-center justify-center transition active:scale-90">2</button>
+          <button onclick="pressPinKey('3')" class="w-12 h-12 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 font-extrabold text-sm flex items-center justify-center transition active:scale-90">3</button>
+          <button onclick="pressPinKey('4')" class="w-12 h-12 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 font-extrabold text-sm flex items-center justify-center transition active:scale-90">4</button>
+          <button onclick="pressPinKey('5')" class="w-12 h-12 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 font-extrabold text-sm flex items-center justify-center transition active:scale-90">5</button>
+          <button onclick="pressPinKey('6')" class="w-12 h-12 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 font-extrabold text-sm flex items-center justify-center transition active:scale-90">6</button>
+          <button onclick="pressPinKey('7')" class="w-12 h-12 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 font-extrabold text-sm flex items-center justify-center transition active:scale-90">7</button>
+          <button onclick="pressPinKey('8')" class="w-12 h-12 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 font-extrabold text-sm flex items-center justify-center transition active:scale-90">8</button>
+          <button onclick="pressPinKey('9')" class="w-12 h-12 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 font-extrabold text-sm flex items-center justify-center transition active:scale-90">9</button>
+          <button onclick="pressPinKey('clear')" class="w-12 h-12 rounded-full bg-red-50 text-brand-red hover:bg-red-100 font-bold text-xs flex items-center justify-center transition active:scale-90">C</button>
+          <button onclick="pressPinKey('0')" class="w-12 h-12 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 font-extrabold text-sm flex items-center justify-center transition active:scale-90">0</button>
+          <button onclick="pressPinKey('back')" class="w-12 h-12 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 font-bold text-xs flex items-center justify-center transition active:scale-90"><i class="fa-solid fa-delete-left"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN FORMULARIO DE CONSULTA / MENSAJE DIRECTO -->
+    <div id="contactFormSection" class="hidden px-5 mt-4 transition-all duration-300">
+      <div class="bg-white rounded-[2rem] p-5 shadow-2xl border border-slate-100">
+        <div class="flex justify-between items-center mb-4">
+          <h3 id="formServiceTitle" class="font-extrabold text-slate-800 text-sm">Enviar mensaje directo</h3>
+          <button onclick="closeForm()" class="text-slate-400 hover:text-slate-600 transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+        
+        <form id="directMessageForm" onsubmit="handleFormSubmit(event)" class="space-y-3.5">
+          <input type="hidden" id="selectedServiceField" value="">
+          <div>
+            <label class="block text-[10px] uppercase tracking-wider font-extrabold text-slate-400 mb-1">Tu Nombre</label>
+            <input required type="text" id="formName" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-brand-dark transition-all" placeholder="Escribe tu nombre completo">
+          </div>
+          <div>
+            <label class="block text-[10px] uppercase tracking-wider font-extrabold text-slate-400 mb-1">WhatsApp / Celular</label>
+            <input required type="tel" id="formPhone" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-brand-dark transition-all" placeholder="Ej: +57 300 123 4567">
+          </div>
+          <div>
+            <label class="block text-[10px] uppercase tracking-wider font-extrabold text-slate-400 mb-1">Tu Mensaje</label>
+            <textarea required id="formMsg" rows="3" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-brand-dark transition-all resize-none" placeholder="¿En qué te podemos ayudar?"></textarea>
+          </div>
+          <button type="submit" class="w-full brand-btn-gradient text-white text-xs font-extrabold py-3 px-4 rounded-xl transition flex items-center justify-center space-x-2 shadow-lg">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>Enviar Mensaje</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- REDES SOCIALES SOCIAL BAR -->
+    <div class="mt-8 px-6 text-center space-y-4">
+      <h3 class="text-slate-400 text-xs font-extrabold tracking-wider uppercase">Mis Redes Sociales</h3>
+      <div class="flex justify-center space-x-4">
+        <a href="#" id="link-social-ig" target="_blank" class="w-12 h-12 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-600 hover:text-pink-600 hover:bg-pink-50 hover:border-pink-200 transition-all duration-300 text-lg shadow-sm">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="#" id="link-social-tt" target="_blank" class="w-12 h-12 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-600 hover:text-black hover:bg-slate-100 hover:border-slate-350 transition-all duration-300 text-lg shadow-sm">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+        <a href="#" id="link-social-fb" target="_blank" class="w-12 h-12 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-blue-50 hover:border-blue-200 transition-all duration-300 text-lg shadow-sm">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="mt-auto pt-8 pb-4 text-center text-slate-400 text-[10px] font-semibold border-t border-slate-100 px-6">
+      <p>© 2026 Dr. Tony Argote Solano. Todos los derechos reservados.</p>
+      <p class="mt-1 text-slate-300">Desarrollado para la salud y el bienestar integral.</p>
+    </footer>
+
+  </main>
+
+  <!-- PANEL DE ADMINISTRACIÓN / CMS DE DOBLE NIVEL -->
+  <div id="customizerPanel" class="fixed top-0 right-0 h-full w-full max-w-sm bg-slate-900 text-slate-100 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col justify-between border-l border-slate-800">
+    
+    <div class="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
+      <div class="flex items-center space-x-2 text-brand-light">
+        <i class="fa-solid fa-sliders"></i>
+        <h3 class="font-extrabold text-sm">Consola de Administración</h3>
+      </div>
+      <button onclick="toggleCustomizer()" class="text-slate-400 hover:text-white p-1">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+    </div>
+
+    <!-- PESTAÑAS DE NIVEL 1 -->
+    <div class="bg-slate-950 px-2 py-1 flex border-b border-slate-800 text-[9px] font-bold text-center overflow-x-auto no-scrollbar">
+      <button onclick="changeAdminTab('tab-perfil')" id="btn-tab-perfil" class="flex-none px-3 py-2 text-brand-light border-b-2 border-brand-light transition">Perfil & Donar</button>
+      <button onclick="changeAdminTab('tab-salud')" id="btn-tab-salud" class="flex-none px-3 py-2 text-slate-400 transition">Health Today</button>
+      <button onclick="changeAdminTab('tab-ounaa')" id="btn-tab-ounaa" class="flex-none px-3 py-2 text-slate-400 transition">O' unaa</button>
+      <button onclick="changeAdminTab('tab-fundacion')" id="btn-tab-fundacion" class="flex-none px-3 py-2 text-slate-400 transition">Fundación</button>
+      <button onclick="changeAdminTab('tab-leads')" id="btn-tab-leads" class="flex-none px-3 py-2 text-slate-400 transition">Bandeja Mensajes (<span id="leadsCount">0</span>)</button>
+    </div>
+
+    <!-- FORMULARIOS DEL ADMINISTRADOR -->
+    <div class="flex-grow overflow-y-auto p-4 space-y-4 text-xs no-scrollbar">
+      
+      <!-- SUBTAB 1: PERFIL, REDES Y BANCOS -->
+      <div id="admin-tab-perfil" class="space-y-4">
+        <h4 class="text-slate-400 font-bold uppercase text-[9px] tracking-wider">Seguridad</h4>
+        <div>
+          <label class="block text-slate-400 mb-1">PIN Numérico de Acceso (4 dígitos)</label>
+          <input type="text" maxlength="4" id="cfg-pin" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-brand-light" value="9350">
+        </div>
+
+        <h4 class="text-slate-400 font-bold uppercase text-[9px] tracking-wider pt-2 border-t border-slate-800">Enlaces & Información General</h4>
+        <div>
+          <label class="block text-slate-400 mb-1">Nombre Completo</label>
+          <input type="text" id="cfg-name" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-brand-light" value="Dr. Tony Argote Solano">
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">Subtítulo / Especialidad</label>
+          <input type="text" id="cfg-title" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-brand-light" value="Médico & Líder de Impacto Social">
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">Frase de Perfil (Biografía)</label>
+          <textarea id="cfg-bio" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-brand-light" rows="3">Uniendo la medicina, la fe y la tradición para llevar bienestar integral a las comunidades del caribe colombiano.</textarea>
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">WhatsApp Principal (Código País + Número)</label>
+          <input type="text" id="cfg-whatsapp" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-brand-light" value="573114197709">
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">Instagram (Perfil Dr.)</label>
+          <input type="text" id="cfg-ig" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="https://instagram.com/tonyargote">
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">TikTok (Perfil)</label>
+          <input type="text" id="cfg-tt" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="https://tiktok.com/@tonyargote">
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">Facebook (Perfil)</label>
+          <input type="text" id="cfg-fb" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="https://facebook.com/tonyargotesolano">
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">Instagram Catálogo (O' unaa)</label>
+          <input type="text" id="cfg-tienda-cat" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="https://instagram.com/tienda_ounaa">
+        </div>
+
+        <h4 class="text-slate-400 font-bold uppercase text-[9px] tracking-wider pt-2 border-t border-slate-800">Cuentas para Donaciones</h4>
+        <div>
+          <label class="block text-slate-400 mb-1">Banco / Entidad Financiera</label>
+          <input type="text" id="cfg-bank-name" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="Banco de Bogotá (Ahorros)">
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">Número de Cuenta</label>
+          <input type="text" id="cfg-bank-account" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="123-45678-9">
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">Titular & NIT</label>
+          <input type="text" id="cfg-bank-owner" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="Fundación Salud Hoy NIT. 901456281">
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">Link de Recaudo Directo</label>
+          <input type="text" id="cfg-donation-link" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="https://wompi.co/fundacionsaludhoy">
+        </div>
+      </div>
+
+      <!-- SUBTAB 2: HEALTH TODAY -->
+      <div id="admin-tab-salud" class="hidden space-y-4">
+        <h4 class="text-slate-400 font-bold uppercase text-[9px] tracking-wider">Añadir Nuevo Suero</h4>
+        <div class="bg-slate-800 p-3 rounded-xl space-y-2 border border-slate-700">
+          <input type="text" id="add-suero-name" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white" placeholder="Nombre: ej. Inmuno-Plus">
+          <textarea id="add-suero-desc" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white resize-none" placeholder="Beneficios del suero..."></textarea>
+          <input type="text" id="add-suero-ing" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white" placeholder="Componentes: ej. Vitamina C, Zinc">
+          <select id="add-suero-tag" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white">
+            <option value="Premium">Premium</option>
+            <option value="Recomendado">Recomendado</option>
+            <option value="Detox">Detox</option>
+          </select>
+          <button onclick="createNewSuero()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-1.5 rounded-lg transition">Añadir Suero</button>
+        </div>
+        <div id="admin-sueros-list" class="space-y-2 pt-2"></div>
+
+        <h4 class="text-slate-400 font-bold uppercase text-[9px] tracking-wider pt-4 border-t border-slate-800">Añadir Consejo de Salud</h4>
+        <div class="bg-slate-800 p-3 rounded-xl space-y-2 border border-slate-700">
+          <input type="text" id="add-tip-cat" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white" placeholder="Categoría: ej. Hidratación">
+          <input type="text" id="add-tip-title" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white" placeholder="Título del consejo">
+          <textarea id="add-tip-desc" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white resize-none" placeholder="Explicación del consejo..."></textarea>
+          <button onclick="createNewTip()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-1.5 rounded-lg transition">Añadir Consejo</button>
+        </div>
+        <div id="admin-tips-list" class="space-y-2 pt-2"></div>
+      </div>
+
+      <!-- SUBTAB 3: TIENDA O'UNAA -->
+      <div id="admin-tab-ounaa" class="hidden space-y-4">
+        <h4 class="text-slate-400 font-bold uppercase text-[9px] tracking-wider">Añadir Producto Artesanal</h4>
+        <div class="bg-slate-800 p-3 rounded-xl space-y-2 border border-slate-700">
+          <input type="text" id="add-prod-name" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white" placeholder="Nombre: ej. Mochila Susu">
+          <textarea id="add-prod-desc" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white resize-none" placeholder="Descripción de la pieza..."></textarea>
+          <input type="text" id="add-prod-emoji" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white" placeholder="Emoji o Símbolo: ej. 🎒, 👒">
+          <input type="text" id="add-prod-tag" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white" placeholder="Categoría: ej. Mochila">
+          <button onclick="createNewProduct()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-1.5 rounded-lg transition">Añadir Producto</button>
+        </div>
+        <div id="admin-products-list" class="space-y-2 pt-2"></div>
+      </div>
+
+      <!-- SUBTAB 4: FUNDACIÓN -->
+      <div id="admin-tab-fundacion" class="hidden space-y-4">
+        <h4 class="text-slate-400 font-bold uppercase text-[9px] tracking-wider">Añadir Programa de Apoyo</h4>
+        <div class="bg-slate-800 p-3 rounded-xl space-y-2 border border-slate-700">
+          <input type="text" id="add-prog-title" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white" placeholder="Título del programa">
+          <textarea id="add-prog-desc" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white resize-none" placeholder="Detalles de la labor y a quién impacta..."></textarea>
+          <input type="text" id="add-prog-icon" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white" placeholder="Icono FontAwesome (ej: fa-hand-holding-medical)">
+          <button onclick="createNewProgram()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-1.5 rounded-lg transition">Añadir Programa</button>
+        </div>
+        <div id="admin-programs-list" class="space-y-2 pt-2"></div>
+
+        <h4 class="text-slate-400 font-bold uppercase text-[9px] tracking-wider pt-4 border-t border-slate-800">Añadir Noticia / Reporte</h4>
+        <div class="bg-slate-800 p-3 rounded-xl space-y-2 border border-slate-700">
+          <input type="text" id="add-news-date" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white" placeholder="Fecha: ej. Junio, 2026">
+          <input type="text" id="add-news-title" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white" placeholder="Título de la noticia">
+          <textarea id="add-news-desc" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white resize-none" placeholder="Contenido o resumen de la noticia..."></textarea>
+          <input type="text" id="add-news-tag" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white" placeholder="Tag: ej. Misión, Logro, Alianza">
+          <button onclick="createNewNews()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-1.5 rounded-lg transition">Añadir Noticia</button>
+        </div>
+        <div id="admin-news-list" class="space-y-2 pt-2"></div>
+      </div>
+
+      <!-- SUBTAB 5: CRM / LEADS -->
+      <div id="admin-tab-leads" class="hidden space-y-4">
+        <div class="flex justify-between items-center">
+          <h4 class="text-slate-400 font-bold uppercase text-[9px] tracking-wider">Mensajes Recibidos de Clientes</h4>
+          <button onclick="clearAllLeads()" class="text-red-400 hover:text-red-500 text-[10px] font-semibold bg-red-500/10 px-2 py-1 rounded transition">Limpiar Todo</button>
+        </div>
+        <div id="admin-leads-list" class="space-y-2.5">
+          <!-- Leads dinámicos -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PIE DEL GESTOR -->
+    <div class="p-4 bg-slate-950 border-t border-slate-800 space-y-2">
+      <button onclick="applyConfig()" class="w-full bg-brand-light hover:bg-brand-dark text-slate-900 font-bold py-2.5 px-4 rounded-xl transition duration-300">
+        Aplicar Cambios
+      </button>
+      <button onclick="exportHTML()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded-xl transition duration-300 flex items-center justify-center space-x-2">
+        <i class="fa-solid fa-code"></i>
+        <span>Exportar HTML Portátil</span>
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    // ESTADOS DE DATOS - PERSISTENCIA MEDIANTE LOCAL STORAGE
+    let config = JSON.parse(localStorage.getItem('tony_config')) || {
+      name: "Dr. Tony Argote Solano",
+      title: "Médico & Líder de Impacto Social",
+      bio: "Uniendo la medicina, la fe y la tradición para llevar bienestar integral a las comunidades del caribe colombiano.",
+      whatsapp: "573114197709",
+      instagram: "https://instagram.com/tonyargote",
+      tiktok: "https://tiktok.com/@tonyargote",
+      facebook: "https://facebook.com/tonyargotesolano",
+      tiendaCat: "https://instagram.com/tienda_ounaa",
+      bankName: "Banco de Bogotá (Ahorros)",
+      bankAccount: "123-45678-9",
+      bankOwner: "Fundación Salud Hoy NIT. 901456281",
+      donationLink: "https://wompi.co/fundacionsaludhoy",
+      adminPIN: "9350"
+    };
+
+    let sueros = JSON.parse(localStorage.getItem('tony_sueros')) || [
+      { id: 1, name: "Suero Inmuno-Plus", desc: "Megadosis de Vitamina C + Zinc + Selenio para blindar tu sistema inmune contra virus y bacterias.", ingredients: "Vitamina C, Zinc, Selenio, Solución Salina", tag: "Premium" },
+      { id: 2, name: "Suero Energizante & Revitalizante", desc: "Complejo B completo + Magnesio para combatir la fatiga crónica y recuperar la energía física.", ingredients: "Complejo B (B1, B6, B12), Magnesio, Electrólitos", tag: "Recomendado" },
+      { id: 3, name: "Suero Detox Hepático", desc: "Glutatión + aminoácidos para limpiar toxinas del hígado, mejorar la piel y revitalizar tu cuerpo.", ingredients: "Glutatión, Vitamina C, Solución Ringer", tag: "Detox" }
+    ];
+
+    let healthTips = JSON.parse(localStorage.getItem('tony_tips')) || [
+      { id: 1, category: "Sueroterapia", title: "¿Cómo funciona?", desc: "La sueroterapia absorbe al 100% las vitaminas y minerales directamente en tu torrente sanguíneo, a diferencia de la vía oral que solo asimila un 15%." },
+      { id: 2, category: "Hábitos", title: "Hidratación Inteligente", desc: "No esperes a tener sed para tomar agua. La sed ya es una señal de deshidratación leve en tu cerebro y órganos metabólicos." },
+      { id: 3, category: "Prevención", title: "Fortalecer el Sistema Inmune", desc: "La vitamina C combinada con oligoelementos (Zinc y Selenio) ayuda a proteger tus barreras celulares contra los virus comunes." }
+    ];
+
+    let products = JSON.parse(localStorage.getItem('tony_products')) || [
+      { id: 1, name: "Mochila Wayúu Clásica", tag: "Susu", desc: "Tejido en una sola hebra con diseños geométricos tradicionales por artesanas de la Guajira.", emoji: "🎒" },
+      { id: 2, name: "Sombrero Mawisa", tag: "Mawisa", desc: "Tejido con fibra de palma de mawisa de la Guajira, ideal para protección solar.", emoji: "👒" }
+    ];
+
+    let programs = JSON.parse(localStorage.getItem('tony_programs')) || [
+      { id: 1, title: "Misiones Médicas Alta Guajira", desc: "Llevamos pediatría, medicina general y sueroterapia avanzada a comunidades indígenas Wayúu de difícil acceso.", icon: "fa-hand-holding-medical" },
+      { id: 2, title: "Higiene y Dignidad Femenina", desc: "Distribución de kits de higiene menstrual ecológica, toallas sanitarias y charlas de salud reproductiva para niñas y jóvenes.", icon: "fa-venus-mars" },
+      { id: 3, title: "Brigadas Salud Hoy en Barranquilla", desc: "Consultas de atención primaria gratuitas y desparasitación para niños en zonas marginadas de la ciudad.", icon: "fa-kit-medical" }
+    ];
+
+    let news = JSON.parse(localStorage.getItem('tony_news')) || [
+      { id: 1, date: "Junio, 2026", title: "Próxima Misión Médica Confirmada", desc: "Preparamos el equipo médico para visitar el corregimiento de Nazareth en la Alta Guajira. ¡Gracias a todos los donantes!", tag: "Misión" },
+      { id: 2, date: "Mayo, 2026", title: "Entregados más de 300 kits de higiene", desc: "Cumplimos con éxito la jornada en el sur de Barranquilla, capacitando a jóvenes sobre educación y cuidado menstrual digno.", tag: "Logro" }
+    ];
+
+    let leads = JSON.parse(localStorage.getItem('tony_leads')) || [];
+
+    // TOQUES SECRETOS PARA REVELAR PANEL ADMIN
+    let logoTaps = 0;
+    let logoTapTimeout;
+    function handleLogoTap() {
+      logoTaps++;
+      clearTimeout(logoTapTimeout);
+      if (logoTaps >= 5) {
+        document.getElementById('adminBtn').classList.remove('hidden');
+        showToast("🔓 ¡Panel de Administración habilitado!");
+        logoTaps = 0;
+      } else {
+        logoTapTimeout = setTimeout(() => { logoTaps = 0; }, 3000);
+      }
+    }
+
+    // CONTROL DEL TECLADO DE SEGURIDAD PARA EL PIN
+    let currentInputPin = "";
+    
+    function openAdminSecurity() {
+      currentInputPin = "";
+      updatePinDots();
+      const pinModal = document.getElementById('pinModal');
+      pinModal.classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closePinModal() {
+      const pinModal = document.getElementById('pinModal');
+      pinModal.classList.add('opacity-0', 'pointer-events-none');
+      currentInputPin = "";
+    }
+
+    function pressPinKey(key) {
+      if (key === 'clear') {
+        currentInputPin = "";
+      } else if (key === 'back') {
+        currentInputPin = currentInputPin.slice(0, -1);
+      } else {
+        if (currentInputPin.length < 4) {
+          currentInputPin += key;
+        }
+      }
+      
+      updatePinDots();
+
+      // Validación automática al tener 4 dígitos
+      if (currentInputPin.length === 4) {
+        setTimeout(() => {
+          const targetPIN = config.adminPIN || "9350";
+          if (currentInputPin === targetPIN) {
+            closePinModal();
+            showToast("Acceso de Administración concedido");
+            toggleCustomizer();
+          } else {
+            showToast("❌ PIN Incorrecto", false);
+            currentInputPin = "";
+            updatePinDots();
+          }
+        }, 150);
+      }
+    }
+
+    function updatePinDots() {
+      for (let i = 0; i < 4; i++) {
+        const dot = document.getElementById(`pinDot-${i}`);
+        if (i < currentInputPin.length) {
+          dot.classList.add('bg-brand-dark', 'border-brand-dark');
+          dot.classList.remove('bg-white', 'border-slate-300');
+        } else {
+          dot.classList.remove('bg-brand-dark', 'border-brand-dark');
+          dot.classList.add('bg-white', 'border-slate-300');
+        }
+      }
+    }
+
+    // NOTIFICACIÓN TIPO TOAST
+    function showToast(message, isSuccess = true) {
+      const toast = document.getElementById('toastNotification');
+      const toastMsg = document.getElementById('toastMessage');
+      const toastIcon = document.getElementById('toastIcon');
+
+      toastMsg.innerText = message;
+      if (isSuccess) {
+        toastIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+        toastIcon.className = 'text-emerald-400';
+      } else {
+        toastIcon.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>';
+        toastIcon.className = 'text-brand-red';
+      }
+
+      toast.classList.remove('opacity-0', '-translate-y-20');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', '-translate-y-20');
+      }, 3000);
+    }
+
+    // PANEL DE ADMINISTRACIÓN
+    function toggleCustomizer() {
+      const panel = document.getElementById('customizerPanel');
+      panel.classList.toggle('translate-x-full');
+      renderAdminLists();
+    }
+
+    // NAVEGACIÓN CMS (TABS NIVEL 1)
+    function changeAdminTab(tabId) {
+      const tabs = ['tab-perfil', 'tab-salud', 'tab-ounaa', 'tab-fundacion', 'tab-leads'];
+      tabs.forEach(t => {
+        document.getElementById(`admin-${t}`).classList.add('hidden');
+        document.getElementById(`btn-${t}`).classList.remove('text-brand-light', 'border-b-2', 'border-brand-light');
+        document.getElementById(`btn-${t}`).classList.add('text-slate-400');
+      });
+
+      document.getElementById(`admin-${tabId}`).classList.remove('hidden');
+      document.getElementById(`btn-${tabId}`).classList.add('text-brand-light', 'border-b-2', 'border-brand-light');
+      document.getElementById(`btn-${tabId}`).classList.remove('text-slate-400');
+    }
+
+    // APLICAR CONFIGURACIONES & GUARDAR
+    function applyConfig() {
+      config.adminPIN = document.getElementById('cfg-pin').value || "9350";
+      config.name = document.getElementById('cfg-name').value;
+      config.title = document.getElementById('cfg-title').value;
+      config.bio = document.getElementById('cfg-bio').value;
+      config.whatsapp = document.getElementById('cfg-whatsapp').value;
+      config.instagram = document.getElementById('cfg-ig').value;
+      config.tiktok = document.getElementById('cfg-tt').value;
+      config.facebook = document.getElementById('cfg-fb').value;
+      config.tiendaCat = document.getElementById('cfg-tienda-cat').value;
+      
+      config.bankName = document.getElementById('cfg-bank-name').value;
+      config.bankAccount = document.getElementById('cfg-bank-account').value;
+      config.bankOwner = document.getElementById('cfg-bank-owner').value;
+      config.donationLink = document.getElementById('cfg-donation-link').value;
+
+      localStorage.setItem('tony_config', JSON.stringify(config));
+      localStorage.setItem('tony_sueros', JSON.stringify(sueros));
+      localStorage.setItem('tony_tips', JSON.stringify(healthTips));
+      localStorage.setItem('tony_products', JSON.stringify(products));
+      localStorage.setItem('tony_programs', JSON.stringify(programs));
+      localStorage.setItem('tony_news', JSON.stringify(news));
+
+      // Actualizar DOM perfil
+      document.getElementById('profName').innerText = config.name;
+      document.getElementById('profTitle').innerText = config.title;
+      document.getElementById('profBio').innerText = config.bio;
+      
+      updateAllRenderedContent();
+      showToast("¡Cambios aplicados correctamente!");
+      toggleCustomizer();
+    }
+
+    // FILTER SUEROTERAPIA
+    let currentSueroFilter = "Todos";
+    function filterSueros(tag) {
+      currentSueroFilter = tag;
+      const chips = document.querySelectorAll('.suero-filter-chip');
+      chips.forEach(chip => {
+        chip.classList.remove('bg-brand-dark', 'text-white');
+        chip.classList.add('bg-slate-100', 'text-slate-600');
+      });
+
+      const activeChipMap = {
+        'Todos': 'filter-all',
+        'Premium': 'filter-premium',
+        'Recomendado': 'filter-rec',
+        'Detox': 'filter-detox'
+      };
+      
+      const activeBtn = document.getElementById(activeChipMap[tag]);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-slate-100', 'text-slate-600');
+        activeBtn.classList.add('bg-brand-dark', 'text-white');
+      }
+
+      renderSueros();
+    }
+
+    function renderSueros() {
+      const suerosContainer = document.getElementById('sueroterapiaCatalogContainer');
+      suerosContainer.innerHTML = "";
+      
+      const filtered = sueros.filter(s => currentSueroFilter === "Todos" || s.tag === currentSueroFilter);
+      
+      if (filtered.length === 0) {
+        suerosContainer.innerHTML = `<p class="text-center text-[10px] text-slate-400 py-4">No hay sueros bajo esta categoría en este momento.</p>`;
+        return;
+      }
+
+      filtered.forEach(suero => {
+        suerosContainer.innerHTML += `
+          <div class="bg-white border border-slate-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+            <div>
+              <span class="text-[9px] bg-brand-dark/10 text-brand-dark font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">${suero.tag}</span>
+              <h5 class="font-bold text-slate-800 text-xs mt-1.5">${suero.name}</h5>
+              <p class="text-slate-600 text-[10px] mt-1 leading-snug">${suero.desc}</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-100 p-2 rounded-lg mt-2 text-[9px] text-slate-500">
+              <strong class="text-brand-dark">Componentes:</strong> ${suero.ingredients}
+            </div>
+            <button onclick="orderSuero('${suero.name}')" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white text-[10px] font-bold py-2 px-3 rounded-xl mt-3 flex items-center justify-center space-x-1.5 transition shadow-sm">
+              <i class="fa-brands fa-whatsapp text-xs"></i>
+              <span>Agendar este Suero</span>
+            </button>
+          </div>
+        `;
+      });
+    }
+
+    // RENDERIZADOR COMPLETO DE SECCIONES EN CALIENTE
+    function updateAllRenderedContent() {
+      const waBase = "https://api.whatsapp.com/send?phone=";
+
+      // Actualizar Bio Principal
+      document.getElementById('profBio').innerText = config.bio;
+
+      // Enlaces Directos
+      document.getElementById('link-wa-fundacion').href = `${waBase}${config.whatsapp}&text=Hola%20Dr.%20Tony,%20me%20gustar%C3%ADa%20postularme%20como%20voluntario%20en%20la%20Fundaci%C3%B3n%20Social.`;
+      document.getElementById('link-wa-health').href = `${waBase}${config.whatsapp}&text=Hola%20Dr.%20Tony,%20quisiera%20agendar%20una%20consulta%20con%20Health%20Today%20Care.`;
+      document.getElementById('link-wa-tienda').href = `${waBase}${config.whatsapp}&text=Hola%20Dr.%20Tony,%20estoy%20interesado%20en%20las%20artesan%C3%ADas%20Way%C3%BAu.`;
+      document.getElementById('link-wa-ministerio').href = `${waBase}${config.whatsapp}&text=Hola%20Dr.%20Tony,%20me%20gustar%C3%ADa%20conectar%20con%20el%20Ministerio%20Mt935.`;
+
+      document.getElementById('link-social-ig').href = config.instagram;
+      document.getElementById('link-social-tt').href = config.tiktok;
+      document.getElementById('link-social-fb').href = config.facebook;
+      document.getElementById('link-ig-tienda').href = config.tiendaCat;
+
+      // Donaciones
+      document.getElementById('bankNameDisplay').innerText = config.bankName;
+      document.getElementById('bankAccountDisplay').innerText = config.bankAccount;
+      document.getElementById('bankOwnerDisplay').innerText = config.bankOwner;
+      document.getElementById('link-direct-donation').href = config.donationLink;
+
+      // RENDERIZAR PROGRAMAS DE LA FUNDACIÓN
+      const progContainer = document.getElementById('programsContainer');
+      progContainer.innerHTML = "";
+      programs.forEach(prog => {
+        progContainer.innerHTML += `
+          <div class="bg-white border border-slate-100 p-3 rounded-xl shadow-sm flex items-start space-x-3 hover:shadow-md transition">
+            <div class="w-9 h-9 rounded-lg bg-sky-50 text-brand-dark flex items-center justify-center flex-shrink-0 text-sm">
+              <i class="fa-solid ${prog.icon}"></i>
+            </div>
+            <div class="flex-grow">
+              <h5 class="font-bold text-slate-800 text-[11px]">${prog.title}</h5>
+              <p class="text-slate-500 text-[10px] mt-0.5 leading-snug">${prog.desc}</p>
+              <button onclick="donateForProgram('${prog.title}')" class="text-brand-red hover:text-red-700 text-[9px] font-extrabold uppercase tracking-wide mt-1.5 flex items-center space-x-1 transition-colors">
+                <i class="fa-solid fa-heart"></i>
+                <span>Apoyar este Programa</span>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+
+      // RENDERIZAR NOTICIAS
+      const newsContainer = document.getElementById('newsContainer');
+      newsContainer.innerHTML = "";
+      news.forEach(item => {
+        newsContainer.innerHTML += `
+          <div class="bg-slate-50 border border-slate-100 rounded-xl p-3 space-y-1.5 hover:bg-sky-50/20 transition-colors">
+            <div class="flex justify-between items-center">
+              <span class="text-[9px] bg-brand-dark/10 text-brand-dark font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">${item.tag}</span>
+              <span class="text-[9px] text-slate-400 font-bold">${item.date}</span>
+            </div>
+            <h5 class="font-bold text-slate-800 text-[11px] leading-snug">${item.title}</h5>
+            <p class="text-slate-600 text-[10px] leading-relaxed">${item.desc}</p>
+          </div>
+        `;
+      });
+
+      // RENDERIZAR SUEROS
+      renderSueros();
+
+      // RENDERIZAR CONSEJOS (CARRUSEL)
+      const tipsContainer = document.getElementById('tipsCarouselContainer');
+      tipsContainer.innerHTML = "";
+      healthTips.forEach(tip => {
+        tipsContainer.innerHTML += `
+          <div class="min-w-[240px] w-[240px] bg-sky-50/60 border border-sky-100 p-3.5 rounded-xl snap-start flex flex-col justify-between">
+            <div>
+              <span class="text-[9px] bg-brand-light/20 text-brand-dark font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">${tip.category}</span>
+              <h5 class="font-bold text-slate-800 text-[11px] mt-1.5">${tip.title}</h5>
+              <p class="text-slate-600 text-[10px] mt-1 leading-relaxed">${tip.desc}</p>
+            </div>
+            <button onclick="shareTip('${tip.title}: ${tip.desc}')" class="text-left text-brand-dark hover:text-brand-darker font-bold text-[9px] mt-2 flex items-center space-x-1 hover:underline transition">
+              <i class="fa-regular fa-share-from-square"></i>
+              <span>Compartir este consejo</span>
+            </button>
+          </div>
+        `;
+      });
+
+      // RENDERIZAR PRODUCTOS TIENDA
+      const wayuuContainer = document.getElementById('wayuuCatalogContainer');
+      wayuuContainer.innerHTML = "";
+      products.forEach(prod => {
+        wayuuContainer.innerHTML += `
+          <div class="bg-white border border-slate-100 rounded-xl overflow-hidden p-2 shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between">
+            <div>
+              <div class="aspect-square w-full rounded-lg bg-red-50/40 flex flex-col items-center justify-center relative overflow-hidden p-3 border border-red-100">
+                <span class="absolute top-1 left-1 bg-brand-red text-white font-extrabold text-[8px] px-1.5 py-0.5 rounded-full uppercase">${prod.tag}</span>
+                <span class="text-3xl">${prod.emoji}</span>
+              </div>
+              <h5 class="font-bold text-slate-800 text-[11px] mt-1.5 leading-tight">${prod.name}</h5>
+              <p class="text-slate-500 text-[9px] leading-tight mt-0.5">${prod.desc}</p>
+            </div>
+            <div class="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[9px] font-extrabold text-brand-red">Pieza Única</span>
+              <button onclick="orderProduct('${prod.name}')" class="bg-brand-red hover:bg-red-700 text-white text-[9px] font-bold px-2 py-1 rounded-lg transition-all duration-200">
+                Preguntar
+              </button>
+            </div>
+          </div>
+        `;
+      });
+
+      // Actualizar conteo de leads
+      document.getElementById('leadsCount').innerText = leads.length;
+    }
+
+    // LISTAS INTERNAS DE BORRADO EN GESTOR (ADMIN)
+    function renderAdminLists() {
+      // Sueros
+      const sList = document.getElementById('admin-sueros-list');
+      sList.innerHTML = "";
+      sueros.forEach(suero => {
+        sList.innerHTML += `
+          <div class="bg-slate-800 p-2 rounded-lg flex justify-between items-center text-[10px] mb-1.5">
+            <div><span class="font-bold text-slate-200 block">${suero.name}</span><span class="text-slate-400 text-[9px]">${suero.tag}</span></div>
+            <button onclick="deleteSuero(${suero.id})" class="text-red-500 hover:text-red-700 p-1"><i class="fa-solid fa-trash-can"></i></button>
+          </div>
+        `;
+      });
+
+      // Consejos
+      const tList = document.getElementById('admin-tips-list');
+      tList.innerHTML = "";
+      healthTips.forEach(tip => {
+        tList.innerHTML += `
+          <div class="bg-slate-800 p-2 rounded-lg flex justify-between items-center text-[10px] mb-1.5">
+            <div><span class="font-bold text-slate-200 block">${tip.title}</span><span class="text-slate-400 text-[9px]">${tip.category}</span></div>
+            <button onclick="deleteTip(${tip.id})" class="text-red-500 hover:text-red-700 p-1"><i class="fa-solid fa-trash-can"></i></button>
+          </div>
+        `;
+      });
+
+      // Productos
+      const pList = document.getElementById('admin-products-list');
+      pList.innerHTML = "";
+      products.forEach(prod => {
+        pList.innerHTML += `
+          <div class="bg-slate-800 p-2 rounded-lg flex justify-between items-center text-[10px] mb-1.5">
+            <div><span class="font-bold text-slate-200 block">${prod.emoji} ${prod.name}</span><span class="text-slate-400 text-[9px]">${prod.tag}</span></div>
+            <button onclick="deleteProduct(${prod.id})" class="text-red-500 hover:text-red-700 p-1"><i class="fa-solid fa-trash-can"></i></button>
+          </div>
+        `;
+      });
+
+      // Programas
+      const prList = document.getElementById('admin-programs-list');
+      prList.innerHTML = "";
+      programs.forEach(prog => {
+        prList.innerHTML += `
+          <div class="bg-slate-800 p-2 rounded-lg flex justify-between items-center text-[10px] mb-1.5">
+            <div><span class="font-bold text-slate-200 block">${prog.title}</span></div>
+            <button onclick="deleteProgram(${prog.id})" class="text-red-500 hover:text-red-700 p-1"><i class="fa-solid fa-trash-can"></i></button>
+          </div>
+        `;
+      });
+
+      // Noticias
+      const nList = document.getElementById('admin-news-list');
+      nList.innerHTML = "";
+      news.forEach(item => {
+        nList.innerHTML += `
+          <div class="bg-slate-800 p-2 rounded-lg flex justify-between items-center text-[10px] mb-1.5">
+            <div><span class="font-bold text-slate-200 block">${item.title}</span><span class="text-slate-400 text-[9px]">${item.date}</span></div>
+            <button onclick="deleteNews(${item.id})" class="text-red-500 hover:text-red-700 p-1"><i class="fa-solid fa-trash-can"></i></button>
+          </div>
+        `;
+      });
+
+      // Leads List (CRM)
+      const lList = document.getElementById('admin-leads-list');
+      lList.innerHTML = "";
+      if (leads.length === 0) {
+        lList.innerHTML = `<p class="text-center text-slate-500 text-[10px] py-6">No has recibido mensajes aún por el formulario.</p>`;
+      } else {
+        leads.forEach(lead => {
+          lList.innerHTML += `
+            <div class="bg-slate-800 p-3 rounded-lg space-y-1.5 text-[10px]">
+              <div class="flex justify-between items-center border-b border-slate-700 pb-1">
+                <span class="font-bold text-slate-200">${lead.name}</span>
+                <span class="text-[8px] bg-slate-700 text-slate-300 px-1.5 py-0.5 rounded">${lead.service}</span>
+              </div>
+              <p class="text-slate-400 italic">"${lead.message}"</p>
+              <div class="flex justify-between items-center pt-1 text-[9px]">
+                <span class="text-slate-500">${lead.date || 'Reciente'}</span>
+                <a href="https://api.whatsapp.com/send?phone=${lead.phone.replace(/[^0-9]/g, '')}" target="_blank" class="text-brand-light font-bold flex items-center space-x-1 hover:underline">
+                  <i class="fa-brands fa-whatsapp text-xs text-emerald-400"></i>
+                  <span>Responder</span>
+                </a>
+              </div>
+            </div>
+          `;
+        });
+      }
+    }
+
+    // GESTIÓN CMS
+    function createNewSuero() {
+      const name = document.getElementById('add-suero-name').value;
+      const desc = document.getElementById('add-suero-desc').value;
+      const ing = document.getElementById('add-suero-ing').value;
+      const tag = document.getElementById('add-suero-tag').value || "Premium";
+
+      if (!name || !desc || !ing) return showToast("Por favor, llena los campos del suero", false);
+      sueros.push({ id: Date.now(), name, desc, ingredients: ing, tag });
+      document.getElementById('add-suero-name').value = "";
+      document.getElementById('add-suero-desc').value = "";
+      document.getElementById('add-suero-ing').value = "";
+      renderAdminLists();
+      showToast("Suero añadido correctamente.");
+    }
+    function deleteSuero(id) { sueros = sueros.filter(s => s.id !== id); renderAdminLists(); showToast("Suero eliminado."); }
+
+    function createNewTip() {
+      const cat = document.getElementById('add-tip-cat').value || "Consejo";
+      const title = document.getElementById('add-tip-title').value;
+      const desc = document.getElementById('add-tip-desc').value;
+
+      if (!title || !desc) return showToast("Por favor, llena los campos del consejo", false);
+      healthTips.push({ id: Date.now(), category: cat, title, desc });
+      document.getElementById('add-tip-cat').value = "";
+      document.getElementById('add-tip-title').value = "";
+      document.getElementById('add-tip-desc').value = "";
+      renderAdminLists();
+      showToast("Consejo añadido.");
+    }
+    function deleteTip(id) { healthTips = healthTips.filter(t => t.id !== id); renderAdminLists(); showToast("Consejo eliminado."); }
+
+    function createNewProduct() {
+      const name = document.getElementById('add-prod-name').value;
+      const desc = document.getElementById('add-prod-desc').value;
+      const emoji = document.getElementById('add-prod-emoji').value || "🎒";
+      const tag = document.getElementById('add-prod-tag').value || "O'unaa";
+
+      if (!name || !desc) return showToast("Por favor, llena los campos del producto", false);
+      products.push({ id: Date.now(), name, desc, emoji, tag });
+      document.getElementById('add-prod-name').value = "";
+      document.getElementById('add-prod-desc').value = "";
+      document.getElementById('add-prod-emoji').value = "";
+      document.getElementById('add-prod-tag').value = "";
+      renderAdminLists();
+      showToast("Producto añadido.");
+    }
+    function deleteProduct(id) { products = products.filter(p => p.id !== id); renderAdminLists(); showToast("Producto eliminado."); }
+
+    function createNewProgram() {
+      const title = document.getElementById('add-prog-title').value;
+      const desc = document.getElementById('add-prog-desc').value;
+      const icon = document.getElementById('add-prog-icon').value || "fa-hand-holding-medical";
+
+      if (!title || !desc) return showToast("Por favor, llena los campos del programa", false);
+      programs.push({ id: Date.now(), title, desc, icon });
+      document.getElementById('add-prog-title').value = "";
+      document.getElementById('add-prog-desc').value = "";
+      document.getElementById('add-prog-icon').value = "";
+      renderAdminLists();
+      showToast("Programa social añadido.");
+    }
+    function deleteProgram(id) { programs = programs.filter(p => p.id !== id); renderAdminLists(); showToast("Programa eliminado."); }
+
+    function createNewNews() {
+      const date = document.getElementById('add-news-date').value || "Hoy";
+      const title = document.getElementById('add-news-title').value;
+      const desc = document.getElementById('add-news-desc').value;
+      const tag = document.getElementById('add-news-tag').value || "Noticia";
+
+      if (!title || !desc) return showToast("Por favor, llena los campos de la noticia", false);
+      news.push({ id: Date.now(), date, title, desc, tag });
+      document.getElementById('add-news-date').value = "";
+      document.getElementById('add-news-title').value = "";
+      document.getElementById('add-news-desc').value = "";
+      document.getElementById('add-news-tag').value = "";
+      renderAdminLists();
+      showToast("Noticia / Reporte añadido.");
+    }
+    function deleteNews(id) { news = news.filter(n => n.id !== id); renderAdminLists(); showToast("Noticia eliminada."); }
+
+    // CRM / LEADS MANAGEMENT
+    function clearAllLeads() {
+      const leadsContainer = document.getElementById('admin-leads-list');
+      leads = [];
+      localStorage.setItem('tony_leads', JSON.stringify(leads));
+      renderAdminLists();
+      document.getElementById('leadsCount').innerText = 0;
+      showToast("Historial de mensajes limpio.");
+    }
+
+    // ACCIONES TÁCTILES & CLICKS
+    function copyBankAccount() {
+      const number = config.bankAccount;
+      const tempInput = document.createElement('input');
+      tempInput.value = number;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+      showToast("¡Número de cuenta copiado al portapapeles!");
+    }
+
+    function donateForProgram(programName) {
+      const text = `Hola Dr. Tony! Vi el programa social de la Fundación: *${programName}*, y me gustaría recibir información para realizar una donación o apoyar como patrocinador.`;
+      const url = `https://api.whatsapp.com/send?phone=${config.whatsapp}&text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+      showToast("Preparando mensaje de donación...");
+    }
+
+    function orderSuero(sueroName) {
+      const text = `Hola Dr. Tony, me interesó el tratamiento de *${sueroName}* de su catálogo en la web. ¿Podríamos agendar una sesión?`;
+      const url = `https://api.whatsapp.com/send?phone=${config.whatsapp}&text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+      showToast("Mensaje de sueroterapia listo.");
+    }
+
+    function orderProduct(productName) {
+      const text = `Hola Dr. Tony! Vi el catálogo de *Tienda O' unaa* en tu web y me encantó la pieza: *${productName}*. ¿Me podrías dar más detalles?`;
+      const url = `https://api.whatsapp.com/send?phone=${config.whatsapp}&text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+      showToast("Consultando disponibilidad...");
+    }
+
+    function shareTip(text) {
+      const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text + " — Consejo de Salud del Dr. Tony Argote")}`;
+      window.open(url, '_blank');
+      showToast("Compartiendo consejo de salud...");
+    }
+
+    // SELECCIÓN DE PESTAÑA PRINCIPAL DE SERVICIO
+    function selectService(serviceId) {
+      const buttons = document.querySelectorAll('.service-tab-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('border-brand-light', 'border-brand-dark', 'border-brand-red', 'border-amber-500', 'bg-white', 'shadow-md');
+        btn.classList.add('border-slate-100', 'bg-slate-50');
+      });
+
+      document.getElementById('content-default').classList.add('hidden');
+      document.getElementById('content-fundacion').classList.add('hidden');
+      document.getElementById('content-health').classList.add('hidden');
+      document.getElementById('content-tienda').classList.add('hidden');
+      document.getElementById('content-ministerio').classList.add('hidden');
+
+      const activeBtn = document.getElementById(`btn-${serviceId}`);
+      activeBtn.classList.remove('border-slate-100', 'bg-slate-50');
+      activeBtn.classList.add('bg-white', 'shadow-md');
+
+      if (serviceId === 'fundacion') activeBtn.classList.add('border-brand-light');
+      if (serviceId === 'health') activeBtn.classList.add('border-brand-dark');
+      if (serviceId === 'tienda') activeBtn.classList.add('border-brand-red');
+      if (serviceId === 'ministerio') activeBtn.classList.add('border-amber-500');
+
+      const targetContent = document.getElementById(`content-${serviceId}`);
+      targetContent.classList.remove('hidden');
+
+      closeForm();
+    }
+
+    function openForm(serviceName) {
+      const formSection = document.getElementById('contactFormSection');
+      const titleField = document.getElementById('formServiceTitle');
+      const hiddenField = document.getElementById('selectedServiceField');
+
+      titleField.innerText = `Consulta para: ${serviceName}`;
+      hiddenField.value = serviceName;
+      formSection.classList.remove('hidden');
+      
+      setTimeout(() => {
+        formSection.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }, 200);
+    }
+
+    function closeForm() {
+      document.getElementById('contactFormSection').classList.add('hidden');
+      document.getElementById('directMessageForm').reset();
+    }
+
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const service = document.getElementById('selectedServiceField').value;
+      const name = document.getElementById('formName').value;
+      const phone = document.getElementById('formPhone').value;
+      const msg = document.getElementById('formMsg').value;
+
+      // Almacenar el mensaje localmente (CRM portátil)
+      const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+      const dateString = new Date().toLocaleDateString('es-ES', options);
+      leads.push({
+        id: Date.now(),
+        service,
+        name,
+        phone,
+        message: msg,
+        date: dateString
+      });
+      localStorage.setItem('tony_leads', JSON.stringify(leads));
+      document.getElementById('leadsCount').innerText = leads.length;
+
+      const prefilledText = `Hola Dr. Tony, soy ${name} (Cel: ${phone}). Envío consulta desde tu Landing Web sobre *${service}*: ${msg}`;
+      const waURL = `https://api.whatsapp.com/send?phone=${config.whatsapp}&text=${encodeURIComponent(prefilledText)}`;
+      
+      showToast("¡Redirigiendo a tu WhatsApp!");
+      setTimeout(() => {
+        window.open(waURL, '_blank');
+        closeForm();
+      }, 1000);
+    }
+
+    // VCARD DIGITAL GENERATOR
+    function downloadVCard() {
+      const vcardText = `BEGIN:VCARD
+VERSION:3.0
+FN:${config.name}
+N:Argote Solano;Tony;;Dr.;
+TEL;TYPE=CELL,VOICE:${config.whatsapp}
+ORG:Fundación Salud Hoy;Health Today Care;Tienda O' unaa;Ministerio Mt935
+TITLE:${config.title}
+URL:${config.instagram}
+NOTE:${config.bio}
+END:VCARD`;
+
+      const blob = new Blob([vcardText], { type: 'text/vcard;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'Dr_Tony_Argote_Solano.vcf');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast("Tarjeta de contacto generada.");
+    }
+
+    function shareProfile() {
+      const dummyUrl = window.location.href;
+      const tempInput = document.createElement('input');
+      tempInput.value = dummyUrl;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+      showToast("¡Enlace de tu perfil copiado!");
+    }
+
+    // EXPORTADOR CON INYECCIÓN DE DATOS REALES (Bakes current customized arrays into source code)
+    function exportHTML() {
+      let rawHTML = document.documentElement.outerHTML;
+
+      // Inyectar de forma nativa los arrays actualizados
+      const serializedConfig = `let config = JSON.parse(localStorage.getItem('tony_config')) || ${JSON.stringify(config, null, 2)};`;
+      const serializedSueros = `let sueros = JSON.parse(localStorage.getItem('tony_sueros')) || ${JSON.stringify(sueros, null, 2)};`;
+      const serializedTips = `let healthTips = JSON.parse(localStorage.getItem('tony_tips')) || ${JSON.stringify(healthTips, null, 2)};`;
+      const serializedProducts = `let products = JSON.parse(localStorage.getItem('tony_products')) || ${JSON.stringify(products, null, 2)};`;
+      const serializedPrograms = `let programs = JSON.parse(localStorage.getItem('tony_programs')) || ${JSON.stringify(programs, null, 2)};`;
+      const serializedNews = `let news = JSON.parse(localStorage.getItem('tony_news')) || ${JSON.stringify(news, null, 2)};`;
+
+      const searchRegexConfig = /let config = JSON\.parse\(localStorage\.getItem\('tony_config'\)\) \|\| \{[\s\S]*?\};/;
+      const searchRegexSueros = /let sueros = JSON\.parse\(localStorage\.getItem\('tony_sueros'\)\) \|\| \[[\s\S]*?\];/;
+      const searchRegexTips = /let healthTips = JSON\.parse\(localStorage\.getItem\('tony_tips'\)\) \|\| \[[\s\S]*?\];/;
+      const searchRegexProducts = /let products = JSON\.parse\(localStorage\.getItem\('tony_products'\)\) \|\| \[[\s\S]*?\];/;
+      const searchRegexPrograms = /let programs = JSON\.parse\(localStorage\.getItem\('tony_programs'\)\) \|\| \[[\s\S]*?\];/;
+      const searchRegexNews = /let news = JSON\.parse\(localStorage\.getItem\('tony_news'\)\) \|\| \[[\s\S]*?\];/;
+
+      let optimizedCode = rawHTML
+        .replace(searchRegexConfig, serializedConfig)
+        .replace(searchRegexSueros, serializedSueros)
+        .replace(searchRegexTips, serializedTips)
+        .replace(searchRegexProducts, serializedProducts)
+        .replace(searchRegexPrograms, serializedPrograms)
+        .replace(searchRegexNews, serializedNews);
+
+      const tempTextArea = document.createElement('textarea');
+      tempTextArea.value = optimizedCode;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempTextArea);
+      
+      showToast("¡Código copiado con tus datos inyectados!");
+    }
+
+    window.onload = function() {
+      // Activar botón por parámetro URL si corresponde (?admin=true o ?edit=tony)
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('admin') === 'true' || urlParams.get('edit') === 'tony') {
+        document.getElementById('adminBtn').classList.remove('hidden');
+      }
+
+      // Sincronizar inputs de Customizer con los estados iniciales
+      document.getElementById('cfg-pin').value = config.adminPIN || "9350";
+      document.getElementById('cfg-name').value = config.name;
+      document.getElementById('cfg-title').value = config.title;
+      document.getElementById('cfg-bio').value = config.bio;
+      document.getElementById('cfg-whatsapp').value = config.whatsapp;
+      document.getElementById('cfg-ig').value = config.instagram;
+      document.getElementById('cfg-tt').value = config.tiktok;
+      document.getElementById('cfg-fb').value = config.facebook;
+      document.getElementById('cfg-tienda-cat').value = config.tiendaCat;
+
+      document.getElementById('cfg-bank-name').value = config.bankName;
+      document.getElementById('cfg-bank-account').value = config.bankAccount;
+      document.getElementById('cfg-bank-owner').value = config.bankOwner;
+      document.getElementById('cfg-donation-link').value = config.donationLink;
+
+      // Renders dinámicos iniciales
+      updateAllRenderedContent();
+    };
+  </script>
+</body>
+</html>
