@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MD. Tony Argote Solano - vCard & Landing Page</title>
+  <title>Dr. Tony Argote Solano - vCard & Landing Page</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -127,24 +127,16 @@
         Uniendo la medicina, la fe y la tradición para llevar bienestar integral a las comunidades del caribe colombiano.
       </p>
 
-      <!-- Botonera de Contacto Rápido y Video Destacado -->
-      <div class="mt-6 flex flex-col items-center space-y-3">
-        <div class="flex justify-center space-x-3">
-          <button onclick="downloadVCard()" class="bg-white/10 hover:bg-white/25 backdrop-blur-md text-white text-xs font-bold px-4 py-2.5 rounded-full border border-white/20 transition-all duration-300 flex items-center space-x-2 shadow-sm">
-            <i class="fa-solid fa-address-card"></i>
-            <span>Guardar Contacto</span>
-          </button>
-          <button onclick="shareProfile()" class="bg-brand-red hover:bg-red-700 text-white text-xs font-bold px-4 py-2.5 rounded-full transition-all duration-300 flex items-center space-x-2 shadow-lg">
-            <i class="fa-solid fa-share-nodes"></i>
-            <span>Compartir Perfil</span>
-          </button>
-        </div>
-        
-        <!-- Botón de Video TikTok -->
-        <a href="https://www.tiktok.com/@saludhoym2/video/6967225946415893766?is_from_webapp=1&sender_device=pc&web_id=7626196045555631623" target="_blank" class="bg-slate-900/30 hover:bg-slate-900/50 backdrop-blur-md text-white text-[11px] font-extrabold px-5 py-2.5 rounded-full border border-white/20 transition-all duration-300 flex items-center space-x-2 shadow-md hover:scale-105">
-          <i class="fa-brands fa-tiktok text-sm"></i>
-          <span>Ver Nuestro Video en TikTok</span>
-        </a>
+      <!-- Botonera de Contacto Rápido -->
+      <div class="mt-6 flex justify-center space-x-3">
+        <button onclick="downloadVCard()" class="bg-white/10 hover:bg-white/25 backdrop-blur-md text-white text-xs font-bold px-4 py-2.5 rounded-full border border-white/20 transition-all duration-300 flex items-center space-x-2 shadow-sm">
+          <i class="fa-solid fa-address-card"></i>
+          <span>Guardar Contacto</span>
+        </button>
+        <button onclick="shareProfile()" class="bg-brand-red hover:bg-red-700 text-white text-xs font-bold px-4 py-2.5 rounded-full transition-all duration-300 flex items-center space-x-2 shadow-lg">
+          <i class="fa-solid fa-share-nodes"></i>
+          <span>Compartir Perfil</span>
+        </button>
       </div>
     </div>
 
@@ -206,7 +198,7 @@
               <h3 class="font-extrabold text-base">Salud Hoy al Alcance de Todos</h3>
             </div>
             <p class="text-slate-600 text-xs leading-relaxed">
-              Trabajamos incansablemente por llevar salud y dignidad a los territorios del Caribe colombiano. A través de donaciones y voluntarios, impactamos vidas en Barranquilla y la Alta Guajira.
+              Transformamos realidades en el Caribe colombiano mediante el desarrollo comunitario. Junto a voluntarios y aliados, sembramos salud, educación y oportunidades en la costa colombiana.
             </p>
 
             <!-- PROGRAMAS DE LA FUNDACIÓN -->
@@ -233,9 +225,9 @@
               <!-- Detalles de Cuenta Bancaria -->
               <div class="bg-white rounded-xl p-3 border border-sky-200/50 flex justify-between items-center shadow-sm">
                 <div class="space-y-0.5">
-                  <span id="bankNameDisplay" class="block text-[10px] font-extrabold text-brand-dark uppercase tracking-wider">Banco de Bogotá (Ahorros)</span>
-                  <span id="bankAccountDisplay" class="block text-xs font-bold text-slate-700 tracking-wider">N° 123-45678-9</span>
-                  <span id="bankOwnerDisplay" class="block text-[9px] text-slate-400 font-semibold">Fundación Salud Hoy NIT. 901...</span>
+                  <span id="bankNameDisplay" class="block text-[10px] font-extrabold text-brand-dark uppercase tracking-wider">Banco caja social (Ahorros)</span>
+                  <span id="bankAccountDisplay" class="block text-xs font-bold text-slate-700 tracking-wider">N° 24060455569</span>
+                  <span id="bankOwnerDisplay" class="block text-[9px] text-slate-400 font-semibold">Fundación Salud Hoy NIT. 900936007...</span>
                 </div>
                 <button onclick="copyBankAccount()" class="bg-brand-dark hover:bg-brand-darker text-white p-2.5 rounded-lg transition-colors flex items-center justify-center shadow-sm" title="Copiar Número de Cuenta">
                   <i class="fa-regular fa-copy text-sm"></i>
@@ -261,6 +253,12 @@
             </div>
 
             <div class="pt-3 flex flex-col space-y-2">
+              <!-- NUEVO BOTÓN: SABER MÁS FUNDACIÓN -->
+              <a href="https://salhoy.github.io/fundacionsaludhoy/" target="_blank" class="w-full bg-white border border-brand-light/60 hover:bg-sky-50 text-brand-dark text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 transition shadow-sm">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                <span>¿Quieres saber más? Visita la Web</span>
+              </a>
+              
               <a href="#" id="link-wa-fundacion" target="_blank" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 transition shadow-md">
                 <i class="fa-brands fa-whatsapp text-base"></i>
                 <span>Postularse como Voluntario</span>
@@ -313,6 +311,12 @@
             </div>
 
             <div class="pt-2 flex flex-col space-y-2">
+              <!-- NUEVO BOTÓN: SABER MÁS HEALTH TODAY -->
+              <a href="https://salhoy.github.io/health%20today1/" target="_blank" class="w-full bg-white border border-brand-dark/40 hover:bg-slate-50 text-brand-dark text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 transition shadow-sm">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                <span>¿Quieres saber más? Visita la Web</span>
+              </a>
+
               <a href="#" id="link-wa-health" target="_blank" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 transition shadow-md">
                 <i class="fa-brands fa-whatsapp text-base"></i>
                 <span>Agendar Consulta General</span>
@@ -346,6 +350,12 @@
             </div>
 
             <div class="pt-3 flex flex-col space-y-2">
+              <!-- NUEVO BOTÓN: SABER MÁS TIENDA -->
+              <a href="https://salhoy.github.io/ounaa1/" target="_blank" class="w-full bg-white border border-brand-red/40 hover:bg-red-50 text-brand-red text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 transition shadow-sm">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                <span>¿Quieres saber más? Visita la Web</span>
+              </a>
+
               <a href="#" id="link-wa-tienda" target="_blank" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 transition shadow-md">
                 <i class="fa-brands fa-whatsapp text-base"></i>
                 <span>Ver Más Diseños Exclusivos</span>
@@ -372,6 +382,12 @@
               Un ministerio enfocado en la plantación de iglesias saludables y llevar bienestar integral que une la sanidad física y espiritual para impactar vidas en la región Caribe.
             </p>
             <div class="pt-2 flex flex-col space-y-2">
+              <!-- NUEVO BOTÓN: SABER MÁS MINISTERIO -->
+              <a href="https://salhoy.github.io/mt935" target="_blank" class="w-full bg-white border border-amber-500/50 hover:bg-amber-50 text-amber-700 text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 transition shadow-sm">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                <span>¿Quieres saber más? Visita la Web</span>
+              </a>
+
               <a href="#" id="link-wa-ministerio" target="_blank" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 transition shadow-md">
                 <i class="fa-brands fa-whatsapp text-base"></i>
                 <span>Pedir Oración o Información</span>
@@ -529,37 +545,37 @@
         </div>
         <div>
           <label class="block text-slate-400 mb-1">Instagram (Perfil MD.)</label>
-          <input type="text" id="cfg-ig" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="https://instagram.com/tonyargote">
+          <input type="text" id="cfg-ig" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="https://instagram.com/saludhoycolombia">
         </div>
         <div>
           <label class="block text-slate-400 mb-1">TikTok (Perfil)</label>
-          <input type="text" id="cfg-tt" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="https://tiktok.com/@tonyargote">
+          <input type="text" id="cfg-tt" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="https://tiktok.com/@saludhoym2">
         </div>
         <div>
           <label class="block text-slate-400 mb-1">Facebook (Perfil)</label>
-          <input type="text" id="cfg-fb" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="https://facebook.com/tonyargotesolano">
+          <input type="text" id="cfg-fb" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="https://www.facebook.com/saludhoymision">
         </div>
         <div>
           <label class="block text-slate-400 mb-1">Instagram Catálogo (O' unaa)</label>
-          <input type="text" id="cfg-tienda-cat" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="https://instagram.com/tienda_ounaa">
+          <input type="text" id="cfg-tienda-cat" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="https://instagram.com/ounaa.soukai">
         </div>
 
         <h4 class="text-slate-400 font-bold uppercase text-[9px] tracking-wider pt-2 border-t border-slate-800">Cuentas para Donaciones</h4>
         <div>
           <label class="block text-slate-400 mb-1">Banco / Entidad Financiera</label>
-          <input type="text" id="cfg-bank-name" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="Banco de Bogotá (Ahorros)">
+          <input type="text" id="cfg-bank-name" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="Banco caja social (Ahorros)">
         </div>
         <div>
           <label class="block text-slate-400 mb-1">Número de Cuenta</label>
-          <input type="text" id="cfg-bank-account" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="123-45678-9">
+          <input type="text" id="cfg-bank-account" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="24060455569">
         </div>
         <div>
           <label class="block text-slate-400 mb-1">Titular & NIT</label>
-          <input type="text" id="cfg-bank-owner" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="Fundación Salud Hoy NIT. 901456281">
+          <input type="text" id="cfg-bank-owner" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="Fundación Salud Hoy NIT. 900936007">
         </div>
         <div>
           <label class="block text-slate-400 mb-1">Link de Recaudo Directo</label>
-          <input type="text" id="cfg-donation-link" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="https://wompi.co/fundacionsaludhoy">
+          <input type="text" id="cfg-donation-link" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" value="https://checkout.nequi.wompi.co/l/Jh74UV">
         </div>
       </div>
 
@@ -666,14 +682,17 @@
       bankName: "Banco Caja Social (Ahorros)",
       bankAccount: "24060455569",
       bankOwner: "Fundación Salud Hoy NIT. 900936007",
-      donationLink: "https://wompi.co/fundacionsaludhoy",
+      donationLink: "https://checkout.nequi.wompi.co/l/Jh74UV",
       adminPIN: "0956"
     };
 
+    // CORRECCIÓN: Se cambió "Como Funciona" por "ingredientes" para evitar errores de sintaxis en JS
     let sueros = JSON.parse(localStorage.getItem('tony_sueros')) || [
-      { id: 1, name: "Suero Inmuno-Plus", desc: "Megadosis de Vitamina C + Zinc + Selenio para blindar tu sistema inmune contra virus y bacterias.", ingredients: "Vitamina C, Zinc, Selenio, Solución Salina", tag: "Premium" },
-      { id: 2, name: "Suero Energizante & Revitalizante", desc: "Complejo B completo + Magnesio para combatir la fatiga crónica y recuperar la energía física.", ingredients: "Complejo B (B1, B6, B12), Magnesio, Electrólitos", tag: "Recomendado" },
-      { id: 3, name: "Suero Detox Hepático", desc: "Glutatión + aminoácidos para limpiar toxinas del hígado, mejorar la piel y revitalizar tu cuerpo.", ingredients: "Glutatión, Vitamina C, Solución Ringer", tag: "Detox" }
+      { id: 1, name: "Suero Inmuno Drip", desc: "Fortalece tu respuesta inmunológica de manera integral.", ingredientes: "Actúa a nivel celular favoreciendo procesos de regulación y recuperación fisiológica.", tag: "Premium" },
+      { id: 2, name: "Suero Energy Drip", desc: "Complejo B completo + Magnesio para combatir la fatiga crónica y recuperar la energía física.", ingredientes: "Actúa a nivel celular favoreciendo procesos de regulación y recuperación fisiológica", tag: "Recomendado" },
+      { id: 3, name: "Suero MegaC Drip", desc: "favorecer la función del sistema inmunológico, apoyar la producción de colágeno y contribuir a la protección de las células frente al estrés oxidativo.", ingredientes: "alcanza concentraciones superiores a las obtenidas por vía oral, permitiendo una mayor disponibilidad para que el organismo aproveche sus efectos antioxidantes y de apoyo a los procesos de recuperación y bienestar", tag: "Recomendado" }, 
+      { id: 4, name: "Suero Slim Drip Avanzado", desc: "Apoya tu metabolismo para una composición corporal saludable.", ingredientes: "Fórmula integral orientada al soporte metabólico en protocolos de reducción de grasa y regulación tiroidea funcional.", tag: "Detox" },
+      { id: 5, name: "Detox Drip ", desc: "Apoya la depuración natural y restablece el equilibrio metabólico.", ingredientes: "Actúa a nivel celular favoreciendo procesos de regulación y recuperación fisiológica", tag: "Detox" }
     ];
 
     let healthTips = JSON.parse(localStorage.getItem('tony_tips')) || [
@@ -696,8 +715,8 @@
     ];
 
     let news = JSON.parse(localStorage.getItem('tony_news')) || [
-      { id: 1, date: "Junio, 2026", title: "Próxima Misión Médica Confirmada", desc: "Preparamos el equipo médico para visitar el corregimiento de Nazareth en la Alta Guajira. ¡Gracias a todos los donantes!", tag: "Misión" },
-      { id: 2, date: "Mayo, 2026", title: "Entregados más de 300 kits de higiene", desc: "Cumplimos con éxito la jornada en el sur de Barranquilla, capacitando a jóvenes sobre educación y cuidado menstrual digno.", tag: "Logro" }
+      { id: 1, date: "Junio, 2026", title: "Misión Médica Confirmada", desc: " Junto con la organizacion FAME y fundacion la costa Colombia visitamos comunidades en Barranquila (Barrios20 de julio, Las flores y corregimiento la Playa) !", tag: "Misión" },
+      { id: 2, date: "Junio, 2026", title: "60 Niños wayuu reciben alimento", desc: " Semanalmente Mana, pan en el desierto entrega alimento a niños y niñas en la Guajira.", tag: "Logro" }
     ];
 
     let leads = JSON.parse(localStorage.getItem('tony_leads')) || [];
@@ -848,18 +867,39 @@
       const progContainer = document.getElementById('programsContainer');
       progContainer.innerHTML = "";
       programs.forEach(prog => {
+        let tiktokBtn = "";
+        
+        if (prog.title === "Agua Para La Vida") {
+          tiktokBtn = `
+            <a href="https://www.tiktok.com/@saludhoym2/video/6967225946415893766?is_from_webapp=1&sender_device=pc&web_id=7626196045555631623" target="_blank" class="mt-2 w-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-bold py-2 px-3 rounded-lg flex items-center justify-center space-x-1.5 transition border border-slate-200">
+              <i class="fa-brands fa-tiktok text-black"></i>
+              <span>Ver video del programa en TikTok</span>
+            </a>
+          `;
+        } else if (prog.title === "Maná, Pan en el Desierto") {
+          tiktokBtn = `
+            <a href="https://www.tiktok.com/@saludhoym2/video/7430263306201353477" target="_blank" class="mt-2 w-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-bold py-2 px-3 rounded-lg flex items-center justify-center space-x-1.5 transition border border-slate-200">
+              <i class="fa-brands fa-tiktok text-black"></i>
+              <span>Ver video del programa en TikTok</span>
+            </a>
+          `;
+        }
+
         progContainer.innerHTML += `
           <div class="bg-white border border-slate-100 p-3 rounded-xl shadow-sm flex items-start space-x-3 hover:shadow-md transition">
             <div class="w-9 h-9 rounded-lg bg-sky-50 text-brand-dark flex items-center justify-center flex-shrink-0 text-sm">
               <i class="fa-solid ${prog.icon}"></i>
             </div>
-            <div class="flex-grow">
+            <div class="flex-grow w-full overflow-hidden">
               <h5 class="font-bold text-slate-800 text-[11px]">${prog.title}</h5>
               <p class="text-slate-500 text-[10px] mt-0.5 leading-snug">${prog.desc}</p>
-              <button onclick="donateForProgram('${prog.title}')" class="text-brand-red hover:text-red-700 text-[9px] font-extrabold uppercase tracking-wide mt-1.5 flex items-center space-x-1 transition-colors">
-                <i class="fa-solid fa-heart"></i>
-                <span>Apoyar este Programa</span>
-              </button>
+              <div class="flex flex-col items-start w-full">
+                <button onclick="donateForProgram('${prog.title}')" class="text-brand-red hover:text-red-700 text-[9px] font-extrabold uppercase tracking-wide mt-1.5 mb-0.5 flex items-center space-x-1 transition-colors">
+                  <i class="fa-solid fa-heart"></i>
+                  <span>Apoyar este Programa</span>
+                </button>
+                ${tiktokBtn}
+              </div>
             </div>
           </div>
         `;
@@ -963,6 +1003,7 @@
         return;
       }
 
+      // CORRECCIÓN: Se utiliza suero.ingredientes en lugar de suero.Como Funciona
       filtered.forEach(suero => {
         suerosContainer.innerHTML += `
           <div class="bg-white border border-slate-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
@@ -972,7 +1013,7 @@
               <p class="text-slate-600 text-[10px] mt-1 leading-snug">${suero.desc}</p>
             </div>
             <div class="bg-slate-50 border border-slate-100 p-2 rounded-lg mt-2 text-[9px] text-slate-500">
-              <strong class="text-brand-dark">Componentes:</strong> ${suero.ingredients}
+              <strong class="text-brand-dark">Componentes:</strong> ${suero.ingredientes}
             </div>
             <button onclick="orderSuero('${suero.name}')" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white text-[10px] font-bold py-2 px-3 rounded-xl mt-3 flex items-center justify-center space-x-1.5 transition shadow-sm">
               <i class="fa-brands fa-whatsapp text-xs"></i>
@@ -1186,7 +1227,8 @@ END:VCARD`;
       const ing = document.getElementById('add-suero-ing').value;
       const tag = document.getElementById('add-suero-tag').value || "Premium";
       if (!name || !desc || !ing) return showToast("Por favor, llena los campos", false);
-      sueros.push({ id: Date.now(), name, desc, ingredients: ing, tag });
+      // CORRECCIÓN: Se actualiza "Como Funciona" por "ingredientes"
+      sueros.push({ id: Date.now(), name, desc, ingredientes: ing, tag });
       localStorage.setItem('tony_sueros', JSON.stringify(sueros));
       ['name','desc','ing'].forEach(id => document.getElementById(`add-suero-${id}`).value = "");
       renderAdminLists(); showToast("Suero añadido.");
